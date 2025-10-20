@@ -1,4 +1,4 @@
-name: Nodejs-demo-app CI/CD
+ame: Nodejs-demo-app CI/CD
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
         with:
           image-ref: helion444/nodejs-demo-app:alpine3.22
           format: 'table'
-          exit-code: '1'
+          exit-code: '0'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'

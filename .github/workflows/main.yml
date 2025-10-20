@@ -2,10 +2,10 @@ name: Nodejs-demo-app CI/CD
 
 on:
   push:
-    branches: 
-      - "master"   # Change to "main" if your default branch is main
+    branches:
+      - "master"
   pull_request:
-    branches: 
+    branches:
       - "master"
 
 jobs:
@@ -33,11 +33,7 @@ jobs:
 
       - name: Test Docker image
         run: |
-          if npm run | grep -q "test"; then
-            docker run --rm helion444/nodejs-demo-app:alpine3.22 npm test
-          else
-            echo "No test script found, skipping test."
-          fi
+          docker run --rm helion444/nodejs-demo-app:alpine3.22 npm test
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
@@ -50,6 +46,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       - name: Push Docker image
+        if: success()
         run: |
           docker push helion444/nodejs-demo-app:alpine3.22
           docker push helion444/nodejs-demo-app:${{ github.sha }}

@@ -3,11 +3,11 @@ FROM node:alpine3.22 AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY ./ ./
 
  #Runner
 FROM gcr.io/distroless/nodejs22-debian12 AS runner

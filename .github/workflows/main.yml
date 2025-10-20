@@ -3,7 +3,7 @@ name: Nodejs-demo-app CI/CD
 on:
   push:
     branches: 
-      - "master"
+      - "master"   # Change to "main" if your default branch is main
   pull_request:
     branches: 
       - "master"
@@ -43,7 +43,12 @@ jobs:
         uses: aquasecurity/trivy-action@v0.29.0
         with:
           image-ref: helion444/nodejs-demo-app:alpine3.22
-          
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL,HIGH
+
       - name: Push Docker image
         run: |
           docker push helion444/nodejs-demo-app:alpine3.22

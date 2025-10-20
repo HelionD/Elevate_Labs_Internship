@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve a simple route
 app.get('/', (req, res) => {
   res.send(`
     <h1>Hello from Node.js 🚀</h1>
@@ -10,7 +9,6 @@ app.get('/', (req, res) => {
   `);
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });

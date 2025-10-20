@@ -31,10 +31,13 @@ jobs:
       - name: Verify Docker image
         run: docker images helion444/nodejs-demo-app:alpine3.22
 
-      - name: Test Docker image
+      - name: Run tests
         run: |
-          docker run --rm helion444/nodejs-demo-app:alpine3.22 npm test
-
+          echo "Installing dependencies..."
+          npm install
+          echo "Running tests..."
+          npm test
+      
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
